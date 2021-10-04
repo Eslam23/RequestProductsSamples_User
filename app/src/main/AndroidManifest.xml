@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.userrequestsample">
 
     <application
@@ -8,8 +9,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.UserRequestSample">
-        <activity android:name=".SplashScreenActivity" android:exported="true">
+        android:theme="@style/Theme.UserRequestSample"
+        tools:replace="android:theme">
+        <activity
+            android:name=".DrugListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LandingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,11 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomeActivity" />
-        <activity
-            android:name=".MainActivity"
-            >
-
-        </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

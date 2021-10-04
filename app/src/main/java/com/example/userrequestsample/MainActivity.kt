@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             }
             else
             {
-                val intent = Intent(applicationContext , HomeActivity::class.java)
+                val intent = Intent(applicationContext , DrugListActivity::class.java)
                 startActivity(intent)
 
             }
