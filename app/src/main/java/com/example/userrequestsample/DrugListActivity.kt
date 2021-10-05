@@ -10,26 +10,35 @@ import com.example.productssamples.Adapter.DrugListAdapter
 import com.example.productssamples.Model.DrugsModel
 import java.util.*
 
-private lateinit var recycler: RecyclerView
-var displaydrugs =  mutableListOf<DrugsModel>()
-val drugs = mutableListOf<DrugsModel>()
 class DrugListActivity : AppCompatActivity() {
+    var drugs =  mutableListOf<DrugsModel>()
+    var displaydrugs =  mutableListOf<DrugsModel>()
+    private lateinit var recycler:RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drug_list)
 
-        drugs.apply {
-            add(DrugsModel(Drug_Name = "Royal Vit", Drug_Price = "EGP 30",Drug_Image = "https://www.sedico.net/english/products/webpages/RoyalVitG/RoyalVitG.png"))
-            add(DrugsModel(Drug_Name = "Panadol", Drug_Price = "EGP 12",Drug_Image = "https://i2.wp.com/wikivera.com/wp-content/uploads/2021/03/MGK5158-GSK-Panadol-Tablets-455x455-1.png"))
+        drugs = mutableListOf<DrugsModel>().apply {
+            add(
+                DrugsModel(
+                    Drug_Name = "Royal Vit",
+                    Drug_Price = "EGP 30",
+                    Drug_Image = "https://www.sedico.net/english/products/webpages/RoyalVitG/RoyalVitG.png"
+                )
+            )
+            add(
+                DrugsModel(
+                    Drug_Name = "Panadol",
+                    Drug_Price = "EGP 12",
+                    Drug_Image = "https://i2.wp.com/wikivera.com/wp-content/uploads/2021/03/MGK5158-GSK-Panadol-Tablets-455x455-1.png"
+                )
+            )
         }
-
         displaydrugs.addAll(drugs)
         val adapter = DrugListAdapter(displaydrugs , this)
-
         recycler = findViewById<RecyclerView>(R.id.recycler)
         recycler.layoutManager = GridLayoutManager(this,2)
         recycler.adapter = adapter
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

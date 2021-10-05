@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
             }
             else
             {
-                val intent = Intent(applicationContext , DrugListActivity::class.java)
+                val intent = Intent(applicationContext , LandingActivity::class.java)
                 startActivity(intent)
 
             }
