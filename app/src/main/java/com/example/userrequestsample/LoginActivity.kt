@@ -6,13 +6,14 @@ import android.util.Patterns
 import android.widget.Button
 import com.google.android.material.textfield.TextInputEditText
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     private lateinit var email: TextInputEditText
     private lateinit var password: TextInputEditText
     private lateinit var login: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
+        getSupportActionBar()?.hide()
         email = findViewById(R.id.et_email)
         password = findViewById(R.id.et_pass)
         login = findViewById(R.id.btn_login)
