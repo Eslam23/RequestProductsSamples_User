@@ -1,14 +1,12 @@
 package com.example.productssamples.Adapter
 
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.isVisible
-import androidx.core.view.plusAssign
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
@@ -16,16 +14,32 @@ import com.example.productssamples.Model.DrugsModel
 import com.example.userrequestsample.R
 
 var sumOfCounts:Int = 0
-class DrugListAdapter(private var drugs: MutableList<DrugsModel>, private val context: Context) :
+class DrugListAdapter (private var drugs: MutableList<DrugsModel> ,private val context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+
+    /*companion object {
+        //var adapter: DrugListAdapter? = null
+        fun updateData(newDrugs: DrugsModel , postion : Int){
+
+            drugs.set(postion , newDrugs)
+            notifyDataSetChanged()
+        //drugs.clear()
+       // drugs.addAll(newDrugs)
+       // notifyDataSetChanged()
+    }
+
+
+    }*/
+
+
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.drug_item, parent, false)
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.drug_item, parent, false)
         return DrugsViewHolder(view)
     }
 
-    @SuppressLint("WrongConstant")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         when (holder) {
@@ -45,12 +59,12 @@ class DrugListAdapter(private var drugs: MutableList<DrugsModel>, private val co
                     holder.elegantbutton.isVisible=true
                 }
 
-                var elegantButton = holder.elegantbutton
+                val elegantButton = holder.elegantbutton
                 //var view:ElegantNumberButton
                 elegantButton.setOnValueChangeListener { view, oldValue, newValue ->
                     //elcode msh mazbot
                     sumOfCounts += (newValue-oldValue)
-                    elegantButton
+
                     drugs[position].Drug_Selected = elegantButton.number.toInt()
                     Toast.makeText(context, "old value "+ oldValue, Toast.LENGTH_SHORT).show()
                     Toast.makeText(context, "new value "+ newValue, Toast.LENGTH_SHORT).show()
@@ -71,6 +85,7 @@ class DrugListAdapter(private var drugs: MutableList<DrugsModel>, private val co
     override fun getItemCount(): Int {
         return drugs.size
     }
+
 
 }
 
