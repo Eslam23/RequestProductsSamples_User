@@ -1,42 +1,23 @@
 package com.example.productssamples.Adapter
 
+
 import android.annotation.SuppressLint
-import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.widget.*
+import androidx.core.view.isVisible
+import androidx.core.view.plusAssign
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
 import com.example.productssamples.Model.DrugsModel
 import com.example.userrequestsample.R
-import java.io.Serializable
 
+var sumOfCounts:Int = 0
 class DrugListAdapter(private var drugs: MutableList<DrugsModel>, private val context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-
-    /*companion object {
-        //var adapter: DrugListAdapter? = null
-        fun updateData(newDrugs: DrugsModel , postion : Int){
-
-            drugs.set(postion , newDrugs)
-            notifyDataSetChanged()
-        //drugs.clear()
-       // drugs.addAll(newDrugs)
-       // notifyDataSetChanged()
-    }
-
-
-    }*/
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view: View =
@@ -59,9 +40,30 @@ class DrugListAdapter(private var drugs: MutableList<DrugsModel>, private val co
                     .into(holder.drugImg)
 
                 holder.cart.setOnClickListener {
-                    holder.cart.isEnabled=false
-                    holder.elegantbutton.visibility = 1
+                    it.isEnabled=false
+                    //holder.elegantbutton.visibility = 1
+                    holder.elegantbutton.isVisible=true
                 }
+
+                var elegantButton = holder.elegantbutton
+                //var view:ElegantNumberButton
+                elegantButton.setOnValueChangeListener { view, oldValue, newValue ->
+                    //elcode msh mazbot
+                    sumOfCounts += (newValue-oldValue)
+                    elegantButton
+                    drugs[position].Drug_Selected = elegantButton.number.toInt()
+                    Toast.makeText(context, "old value "+ oldValue, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "new value "+ newValue, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "number "+ elegantButton.number, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "count " + sumOfCounts, Toast.LENGTH_SHORT).show()
+                    if(sumOfCounts > 3 ){
+                        elegantButton.setNumber("0")
+                    }
+                }
+                /*sumOfCounts += elegantButton.number.toInt()
+                Toast.makeText(context, "number "+ elegantButton.number, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "child count " + elegantButton.childCount, Toast.LENGTH_SHORT).show()
+            })*/
             }
         }
     }
