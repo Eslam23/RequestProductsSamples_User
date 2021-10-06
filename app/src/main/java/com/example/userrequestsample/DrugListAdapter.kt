@@ -13,10 +13,16 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
 import com.example.productssamples.Model.DrugsModel
 import com.example.userrequestsample.R
 
-var sumOfCounts:Int = 0
-class DrugListAdapter (private var drugs: MutableList<DrugsModel> ,private val context: Context) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+var sumOfCounts: Int = 0
+
+class DrugListAdapter(private var drugs: MutableList<DrugsModel>, private val context: Context) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    var s = sumOfCounts.let {
+        for (i in 0 until drugs.size) {
+            sumOfCounts += drugs[i].Drug_Selected
+        }
+    }
 
     /*companion object {
         //var adapter: DrugListAdapter? = null
@@ -33,10 +39,9 @@ class DrugListAdapter (private var drugs: MutableList<DrugsModel> ,private val c
     }*/
 
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.drug_item, parent, false)
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.drug_item, parent, false)
         return DrugsViewHolder(view)
     }
 
@@ -54,33 +59,63 @@ class DrugListAdapter (private var drugs: MutableList<DrugsModel> ,private val c
                     .into(holder.drugImg)
 
                 holder.cart.setOnClickListener {
-                    it.isEnabled=false
-                    //holder.elegantbutton.visibility = 1
-                    holder.elegantbutton.isVisible=true
+                    it.visibility = View.INVISIBLE
+                    holder.counterLayout.visibility = View.VISIBLE
                 }
 
-                val elegantButton = holder.elegantbutton
-                //var view:ElegantNumberButton
-                elegantButton.setOnValueChangeListener { view, oldValue, newValue ->
-                    //elcode msh mazbot
-                    sumOfCounts += (newValue-oldValue)
+                if (sumOfCounts == 0) {
+                    var counter: Int = 0
+                    holder.plus.setOnClickListener {
+                        if (sumOfCounts < 3) {
+                            counter++
+                            sumOfCounts += 1
+                            holder.counter.text = counter.toString()
+                        } else
+                            it.isClickable = false
+                    }
+                    holder.minus.setOnClickListener {
+                        if (counter != 0 && sumOfCounts <= 3) {
+                            holder.plus.isClickable = true
+                            counter--
+                            sumOfCounts -= 1
+                            holder.counter.text = counter.toString()
+                        } else {
+                            holder.counterLayout.visibility = View.INVISIBLE
+                            holder.cart.visibility = View.VISIBLE
+                        }
+                    }
+                } else {
+                    var counter = drugs[position].Drug_Selected
+                    if (counter > 0) {
 
-                    drugs[position].Drug_Selected = elegantButton.number.toInt()
-                    Toast.makeText(context, "old value "+ oldValue, Toast.LENGTH_SHORT).show()
-                    Toast.makeText(context, "new value "+ newValue, Toast.LENGTH_SHORT).show()
-                    Toast.makeText(context, "number "+ elegantButton.number, Toast.LENGTH_SHORT).show()
-                    Toast.makeText(context, "count " + sumOfCounts, Toast.LENGTH_SHORT).show()
-                    if(sumOfCounts > 3 ){
-                        elegantButton.setNumber("0")
+                        holder.cart.visibility = View.INVISIBLE
+                        holder.counterLayout.visibility = View.VISIBLE
+                        holder.counter.text = drugs[position].Drug_Selected.toString()
+                    }
+                    holder.plus.setOnClickListener {
+                        if (sumOfCounts < 3) {
+                            counter++
+                            sumOfCounts += 1
+                            holder.counter.text = counter.toString()
+                        }
+
+                    }
+                    holder.minus.setOnClickListener {
+                        if (counter > 0 && sumOfCounts <= 3) {
+                            holder.plus.isClickable = true
+                            counter--
+                            sumOfCounts -= 1
+                            holder.counter.text = counter.toString()
+                        } else if (counter == 0) {
+                            holder.counterLayout.visibility = View.INVISIBLE
+                            holder.cart.visibility = View.VISIBLE
+                        }
                     }
                 }
-                /*sumOfCounts += elegantButton.number.toInt()
-                Toast.makeText(context, "number "+ elegantButton.number, Toast.LENGTH_SHORT).show()
-                Toast.makeText(context, "child count " + elegantButton.childCount, Toast.LENGTH_SHORT).show()
-            })*/
             }
         }
     }
+
     @Override
     override fun getItemCount(): Int {
         return drugs.size
@@ -94,5 +129,8 @@ class DrugsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var drugName: TextView = view.findViewById(R.id.drug_name_id)
     var drugPrice: TextView = view.findViewById(R.id.drug_price_id)
     var cart: Button = view.findViewById(R.id.btn_addToCart)
-    var elegantbutton: ElegantNumberButton= view.findViewById(R.id.btn_elegantButton)
+    var counterLayout: LinearLayout = view.findViewById(R.id.counter_layout)
+    var plus: Button = view.findViewById(R.id.btn_plus)
+    var minus: Button = view.findViewById(R.id.btn_minus)
+    var counter: TextView = view.findViewById(R.id.tv_counter)
 }

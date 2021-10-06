@@ -23,7 +23,8 @@ class DrugListActivity : AppCompatActivity() {
                 DrugsModel(
                     Drug_Name = "Royal Vit",
                     Drug_Price = "EGP 30",
-                    Drug_Image = "https://www.sedico.net/english/products/webpages/RoyalVitG/RoyalVitG.png"
+                    Drug_Image = "https://www.sedico.net/english/products/webpages/RoyalVitG/RoyalVitG.png",
+                    3
                 )
             )
             add(

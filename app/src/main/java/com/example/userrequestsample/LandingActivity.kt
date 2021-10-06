@@ -25,8 +25,6 @@ class LandingActivity : AppCompatActivity() {
                         "Yes"
                     ) { dialog: DialogInterface?, which: Int ->
                         Toast.makeText(this@LandingActivity,"Canceled successfully",Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@LandingActivity , DrugListActivity::class.java)
-                        startActivity(intent)
                     }.setNegativeButton("cancel", null).create()
             alertDialog.show()
         }
