@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.userrequestsample">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,11 +14,14 @@
         android:theme="@style/Theme.UserRequestSample"
         tools:replace="android:theme">
         <activity
+            android:name=".SubmitActivity"
+            android:exported="true" />
+        <activity
             android:name=".DrugListActivity"
             android:exported="true" />
         <activity
             android:name=".LandingActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"

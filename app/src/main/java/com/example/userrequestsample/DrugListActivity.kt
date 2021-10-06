@@ -1,8 +1,10 @@
 package com.example.userrequestsample
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.widget.Button
 import android.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +20,11 @@ class DrugListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drug_list)
 
+        val submit: Button = findViewById(R.id.btn_submit)
+        submit.setOnClickListener {
+            val i = Intent(this@DrugListActivity,SubmitActivity::class.java)
+            startActivity(i)
+        }
         drugs = mutableListOf<DrugsModel>().apply {
             add(
                 DrugsModel(

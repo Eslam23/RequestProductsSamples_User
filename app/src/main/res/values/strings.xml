@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">UserRequestSample</string>
+    <string-array name="departments">
+        <item>HR</item>
+        <item>Marketing</item>
+        <item>Digital</item>
+        <item>IT</item>
+        <item>Sales</item>
+    </string-array>
 </resources>
