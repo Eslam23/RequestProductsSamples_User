@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.userrequestsample">
+    package="com.example.productssamples">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,16 +14,16 @@
         android:theme="@style/Theme.UserRequestSample"
         tools:replace="android:theme">
         <activity
-            android:name=".SubmitActivity"
+            android:name="com.example.productssamples.SubmitActivity"
             android:exported="true" />
         <activity
-            android:name=".DrugListActivity"
+            android:name="com.example.productssamples.DrugListActivity"
             android:exported="true" />
         <activity
-            android:name=".LandingActivity"
+            android:name="com.example.productssamples.LandingActivity"
             android:exported="true" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name="com.example.productssamples.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/AppTheme.Splash">
             <intent-filter>
@@ -32,7 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name="com.example.productssamples.MainActivity" />
     </application>
 
 </manifest>

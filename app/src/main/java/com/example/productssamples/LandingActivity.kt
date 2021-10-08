@@ -1,4 +1,4 @@
-package com.example.userrequestsample
+package com.example.productssamples
 
 import android.content.DialogInterface
 import android.content.Intent

@@ -6,12 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
 import com.example.productssamples.Model.DrugsModel
-import com.example.userrequestsample.R
+import com.example.productssamples.R
 
 
 var sumOfCounts: Int = 0

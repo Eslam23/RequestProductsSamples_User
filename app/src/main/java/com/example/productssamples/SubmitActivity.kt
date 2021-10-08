@@ -1,4 +1,4 @@
-package com.example.userrequestsample
+package com.example.productssamples
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
